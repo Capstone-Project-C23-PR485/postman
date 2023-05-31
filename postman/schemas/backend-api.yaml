@@ -213,7 +213,7 @@ paths:
     "/logs/{id}":
         parameters:
             - schema:
-                  type: string
+                  type: number
               name: id
               in: path
               required: true
@@ -364,7 +364,7 @@ components:
             type: object
             properties:
                 id:
-                    type: string
+                    type: number
                 data:
                     type: object
                 image:

@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "f8dc1f44-3a34-4336-aba3-56b71afe3c2e",
-		"name": "SkinCheck.Ai Apis",
+		"_postman_id": "97769a58-75c7-4805-b1f1-b9f80eef52bb",
+		"name": "SkinCheck.AI API Documentation",
 		"description": "Backend api for capstone project\n\nContact Support:\n Name: Dimas Tri Mustakim\n Email: c151dsx1673@bangkit.academy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_uid": "27702577-f8dc1f44-3a34-4336-aba3-56b71afe3c2e"
+		"_uid": "27702577-97769a58-75c7-4805-b1f1-b9f80eef52bb"
 	},
 	"item": [
 		{
@@ -12,7 +12,7 @@
 			"item": [
 				{
 					"name": "post-ml-analysis",
-					"id": "d57a31c5-2db8-4ea7-93ad-c866bbf2a95c",
+					"id": "19f8c48a-f06d-4004-ad7b-f6775186c665",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -28,6 +28,16 @@
 								"value": "application/json"
 							}
 						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/home/dimas/Pictures/Screenshots/Screenshot from 2023-05-31 21-16-33.png"
+								}
+							]
+						},
 						"url": {
 							"raw": "{{baseUrl}}/request-analyses",
 							"host": [
@@ -41,7 +51,7 @@
 					},
 					"response": [
 						{
-							"id": "e451fcb2-a041-4ac9-a6dc-f97e54df9265",
+							"id": "60ec00ae-dbd1-47d4-9fc5-46c73666f6ec",
 							"name": "OK",
 							"originalRequest": {
 								"method": "POST",
@@ -64,7 +74,7 @@
 									"mode": "formdata",
 									"formdata": [
 										{
-											"key": "photo",
+											"key": "image",
 											"value": "<string>",
 											"type": "text"
 										}
@@ -95,14 +105,14 @@
 					]
 				}
 			],
-			"id": "033f758f-fc76-4b2e-98e7-9a4f2e4e97a3"
+			"id": "4e8673fa-22e0-48a1-bc53-e3f95feea65b"
 		},
 		{
 			"name": "report-analyses",
 			"item": [
 				{
 					"name": "Endpoint for ML models reporting back the result",
-					"id": "e23aa0d6-ac44-44e9-a5f7-c71af2c6f9e5",
+					"id": "f2f61706-832c-455b-8ad7-78c1a26f26b1",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -116,7 +126,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"id\": \"<string>\",\n  \"data\": {},\n  \"image\": \"<string>\",\n  \"model\": \"<string>\"\n}",
+							"raw": "{\n  \"id\": 1,\n  \"data\": {\"model\": \"pores\"},\n  \"image\": \"test images\",\n  \"model\": \"pores\"\n}",
 							"options": {
 								"raw": {
 									"headerFamily": "json",
@@ -136,7 +146,7 @@
 					},
 					"response": [
 						{
-							"id": "0c1a2a88-a2ad-4dcc-b68e-a580fafcc17b",
+							"id": "4baa4617-c1cf-44e3-993f-bbfee4b6ea9b",
 							"name": "OK",
 							"originalRequest": {
 								"method": "POST",
@@ -180,7 +190,261 @@
 					]
 				}
 			],
-			"id": "ba714362-3d98-4492-ba98-2052138c52cc"
+			"id": "5efb98e6-e72d-4f53-ab75-f9f24efc4daa"
+		},
+		{
+			"name": "profile",
+			"item": [
+				{
+					"name": "uploadImage",
+					"item": [
+						{
+							"name": "Renew the profile photo",
+							"id": "ed17b4bb-bc8d-4258-9bec-948b63db791f",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "multipart/form-data"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"value": "<string>",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/profile/uploadImage",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"profile",
+										"uploadImage"
+									]
+								},
+								"description": "Upload new profile photo."
+							},
+							"response": [
+								{
+									"id": "f6133737-2f1f-44c4-b9e7-908a0edd7a1b",
+									"name": "Image uploaded successfully!",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "multipart/form-data"
+											},
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "file",
+													"value": "<string>",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/profile/uploadImage",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"profile",
+												"uploadImage"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": []
+								}
+							]
+						}
+					],
+					"id": "f05346df-1b78-4ef5-bd3f-626da717df72"
+				},
+				{
+					"name": "Get User Information",
+					"id": "07e9f370-2642-4be7-8be5-d5b4f5545ab3",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/profile",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"profile"
+							]
+						},
+						"description": "Retrieve the information of the user."
+					},
+					"response": [
+						{
+							"id": "7dd45471-4fa2-4706-a823-6ff01e7f247d",
+							"name": "User Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/profile",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"user_id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"picture\": \"<uri>\",\n  \"dateOfBirth\": \"<date>\",\n  \"skinType\": \"<string>\",\n  \"skinCondition\": \"<string>\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update User Information",
+					"id": "a3ad4a66-4ffe-415a-a1b1-53d9c7afbe55",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"<string>\",\n  \"birthDate\": \"<date>\",\n  \"skinType\": \"<string>\",\n  \"skinCondition\": \"<string>\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/profile",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"profile"
+							]
+						},
+						"description": "Update the information of an existing user."
+					},
+					"response": [
+						{
+							"id": "6b49e52f-da57-48f3-9705-cb04aa48ef09",
+							"name": "User Updated",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"<string>\",\n  \"birthDate\": \"<date>\",\n  \"skinType\": \"<string>\",\n  \"skinCondition\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/profile",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"user_id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"picture\": \"<uri>\",\n  \"dateOfBirth\": \"<date>\",\n  \"skinType\": \"<string>\",\n  \"skinCondition\": \"<string>\"\n}"
+						}
+					]
+				}
+			],
+			"id": "faf5421f-b27d-48d8-b7aa-63ac84186851"
 		},
 		{
 			"name": "products",
@@ -190,7 +454,7 @@
 					"item": [
 						{
 							"name": "Getting specific product",
-							"id": "6de52064-a6bc-4d3d-a94c-e5171be4208d",
+							"id": "7c15992e-7a87-4bd7-ac4e-80997ebf053f",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -214,7 +478,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "2"
+											"value": "<string>"
 										}
 									]
 								},
@@ -222,7 +486,7 @@
 							},
 							"response": [
 								{
-									"id": "cd52227f-f9c4-4b49-a22c-ce5daee3a3fe",
+									"id": "8001cb88-d4c1-446d-8f1f-6b485d734155",
 									"name": "Product data retrieved successfully.",
 									"originalRequest": {
 										"method": "GET",
@@ -268,14 +532,14 @@
 							]
 						}
 					],
-					"id": "847e4407-73be-46ff-8384-d8cc8ebdc401"
+					"id": "d3513a93-680b-4593-8c4d-3c7972dd18e4"
 				},
 				{
 					"name": "recommendation",
 					"item": [
 						{
 							"name": "Getting the list of recommendation",
-							"id": "5c81337a-4d2d-4924-8ba8-a3f136f0f4a0",
+							"id": "a3cdb060-7a8d-49e6-95a4-1eee8a92b82a",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -293,7 +557,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/products/recommendation?skinType=Dry&skinCondition=Best",
+									"raw": "{{baseUrl}}/products/recommendation?skinType=<string>&skinCondition=<string>",
 									"host": [
 										"{{baseUrl}}"
 									],
@@ -303,14 +567,14 @@
 									],
 									"query": [
 										{
+											"description": "Skin type",
 											"key": "skinType",
-											"value": "Dry",
-											"description": "Skin type"
+											"value": "<string>"
 										},
 										{
+											"description": "skin condition description",
 											"key": "skinCondition",
-											"value": "Best",
-											"description": "skin condition description"
+											"value": "<string>"
 										}
 									]
 								},
@@ -318,7 +582,7 @@
 							},
 							"response": [
 								{
-									"id": "f8232027-3c8d-49ae-9558-71acc6bcba10",
+									"id": "ccf7cd25-ba40-4ce7-8d3a-371718d05915",
 									"name": "OK",
 									"originalRequest": {
 										"method": "GET",
@@ -342,7 +606,7 @@
 											"raw": ""
 										},
 										"url": {
-											"raw": "{{baseUrl}}/products/recommendation?skinType=<string>",
+											"raw": "{{baseUrl}}/products/recommendation?skinType=<string>&skinCondition=<string>",
 											"host": [
 												"{{baseUrl}}"
 											],
@@ -354,6 +618,11 @@
 												{
 													"description": "Skin type",
 													"key": "skinType",
+													"value": "<string>"
+												},
+												{
+													"description": "skin condition description",
+													"key": "skinCondition",
 													"value": "<string>"
 												}
 											]
@@ -374,11 +643,11 @@
 							]
 						}
 					],
-					"id": "02b7adc3-89b7-49e9-b9d7-e8f7ad9e3bc1"
+					"id": "50619830-82fc-4c1a-961b-b63f33449977"
 				},
 				{
 					"name": "Getting a list of products available",
-					"id": "e0ac6940-b3a2-4cfa-9b06-056b0a2a1a58",
+					"id": "c442f9b7-164a-4236-bfa7-576b066c0e65",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -415,7 +684,7 @@
 					},
 					"response": [
 						{
-							"id": "ac5db42b-717f-4d33-b44c-801687453dc2",
+							"id": "64db9390-0c41-44f3-a17b-7f7d528421d1",
 							"name": "Products data retrieved successfully.",
 							"originalRequest": {
 								"method": "GET",
@@ -467,7 +736,7 @@
 					]
 				}
 			],
-			"id": "febad9a1-c7dd-4632-a979-94f34f15016b"
+			"id": "53bea86b-7c60-431b-aaec-0d3f0f06784d"
 		},
 		{
 			"name": "logs",
@@ -477,7 +746,7 @@
 					"item": [
 						{
 							"name": "Getting the detail of the analysis",
-							"id": "28f347c3-0911-4390-bb1a-32ddc19535d8",
+							"id": "5e83ce85-59be-46a0-9ca4-38a0357604d1",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -501,14 +770,14 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "<string>"
+											"value": "2"
 										}
 									]
 								}
 							},
 							"response": [
 								{
-									"id": "dc6c894e-98ca-4b22-a03d-9d9699c91380",
+									"id": "971a3459-380a-49e3-96a4-af63c2c81249",
 									"name": "OK",
 									"originalRequest": {
 										"method": "GET",
@@ -554,11 +823,11 @@
 							]
 						}
 					],
-					"id": "39c39a7b-8583-4fc3-8847-f766ad92a8e1"
+					"id": "9e170849-94b0-4327-88b1-7c277b6a2363"
 				},
 				{
 					"name": "Getting a list of log analysis for the user",
-					"id": "af012dd9-76a2-46a4-95d9-402bb295ed7f",
+					"id": "16264f74-3fe7-4bad-87e6-3df9e4c1fe7e",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -582,7 +851,7 @@
 					},
 					"response": [
 						{
-							"id": "00076184-c025-4ffc-bcc9-15679d22b6a2",
+							"id": "1746e216-dd8c-4b8b-9444-9593f7429f3d",
 							"name": "OK",
 							"originalRequest": {
 								"method": "GET",
@@ -622,14 +891,14 @@
 					]
 				}
 			],
-			"id": "fd74c39c-e0ea-482a-861f-c5a8fb03cafe"
+			"id": "500365f9-3fa2-4096-b4a2-5c86de08d21e"
 		},
 		{
 			"name": "articles",
 			"item": [
 				{
 					"name": "Your GET endpoint",
-					"id": "2fb09adf-9d0f-4c8e-af61-3a4da489e9c6",
+					"id": "ddd8c222-39c6-4e3c-9b16-eaab094c0c77",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -654,7 +923,7 @@
 					},
 					"response": [
 						{
-							"id": "ce6c60f9-425f-4672-b823-c724c7d463a7",
+							"id": "6e8039d5-2194-42d5-80f9-5d7a7f168076",
 							"name": "OK",
 							"originalRequest": {
 								"method": "GET",
@@ -694,255 +963,7 @@
 					]
 				}
 			],
-			"id": "c98a8f3e-864c-4f12-a3f1-c9bad8caadd5"
-		},
-		{
-			"name": "profile",
-			"item": [
-				{
-					"name": "Get User Information",
-					"id": "717f4bd5-70e1-4563-8939-db6b59891e61",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "{{baseUrl}}/profile",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"profile"
-							]
-						},
-						"description": "Retrieve the information of the user."
-					},
-					"response": [
-						{
-							"id": "17e6cade-e610-480e-bc83-9e84482e80eb",
-							"name": "User Found",
-							"originalRequest": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json"
-									},
-									{
-										"description": "Added as a part of security scheme: bearer",
-										"key": "Authorization",
-										"value": "Bearer <token>"
-									}
-								],
-								"url": {
-									"raw": "{{baseUrl}}/profile",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"profile"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "Text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								}
-							],
-							"cookie": [],
-							"body": "{\n  \"user_id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"picture\": \"<uri>\",\n  \"dateOfBirth\": \"<date>\",\n  \"skinType\": \"<string>\",\n  \"skinCondition\": \"<string>\"\n}"
-						}
-					]
-				},
-				{
-					"name": "Update User Information",
-					"id": "034e67e3-2ce4-44f1-9b07-c9d3abf3f882",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "PATCH",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"name\": \"Dimas Tri Mustakim C151DSX1673 - test updated\",\n  \"birthDate\": \"2001-05-31\",\n  \"skinType\": \"Dry\",\n  \"skinCondition\": \"Healthy\"\n}",
-							"options": {
-								"raw": {
-									"headerFamily": "json",
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/profile",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"profile"
-							]
-						},
-						"description": "Update the information of an existing user."
-					},
-					"response": [
-						{
-							"id": "f2b16dc3-c587-4d96-b4ac-33e41eaac224",
-							"name": "User Updated",
-							"originalRequest": {
-								"method": "PATCH",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json"
-									},
-									{
-										"key": "Accept",
-										"value": "application/json"
-									},
-									{
-										"description": "Added as a part of security scheme: bearer",
-										"key": "Authorization",
-										"value": "Bearer <token>"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n  \"name\": \"<string>\",\n  \"birthDate\": \"<date>\",\n  \"skinType\": \"<string>\",\n  \"skinCondition\": \"<string>\"\n}",
-									"options": {
-										"raw": {
-											"headerFamily": "json",
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseUrl}}/profile",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"profile"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "Text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								}
-							],
-							"cookie": [],
-							"body": "{\n  \"user_id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"picture\": \"<uri>\",\n  \"dateOfBirth\": \"<date>\",\n  \"skinType\": \"<string>\",\n  \"skinCondition\": \"<string>\"\n}"
-						}
-					]
-				},
-				{
-					"name": "Renew the profile photo",
-					"id": "7a7afc02-04ad-45c2-947c-025e3ea01436",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "multipart/form-data"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"value": "<string>",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{baseUrl}}/profile/uploadImage",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"profile",
-								"uploadImage"
-							]
-						},
-						"description": "Upload new profile photo."
-					},
-					"response": [
-						{
-							"id": "30af47f0-982e-43d8-82eb-3916402714e6",
-							"name": "Image uploaded successfully!",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "multipart/form-data"
-									},
-									{
-										"description": "Added as a part of security scheme: bearer",
-										"key": "Authorization",
-										"value": "Bearer <token>"
-									}
-								],
-								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "file",
-											"value": "<string>",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "{{baseUrl}}/profile/uploadImage",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"profile",
-										"uploadImage"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "Text",
-							"header": [],
-							"cookie": []
-						}
-					]
-				}
-			],
-			"id": "fa73b01e-4342-4236-8ac5-0ee90e412d08"
+			"id": "b016deb8-7475-43e9-8781-8d907f09adf9"
 		}
 	],
 	"auth": {
@@ -957,10 +978,10 @@
 	},
 	"variable": [
 		{
-			"id": "a18eb61c-d964-4675-b0ce-eca9d3c92099",
+			"id": "f743f0f5-bdcb-423c-bbc7-891655de6529",
 			"key": "baseUrl",
 			"value": "http://localhost:3000",
-			"type": "string"
+			"type": "any"
 		}
 	]
 }
