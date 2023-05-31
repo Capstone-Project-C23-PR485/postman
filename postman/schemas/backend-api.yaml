@@ -1,0 +1,382 @@
+openapi: 3.0.0
+info:
+    title: backend-api
+    version: "1.0"
+    description: Backend api for capstone project
+    contact:
+        name: Dimas Tri Mustakim
+        email: c151dsx1673@bangkit.academy
+        url: www.linkedin.com/in/dimastrim
+    license:
+        name: MIT
+        url: "https://opensource.org/license/mit/"
+    termsOfService: https://github.com
+servers:
+    - url: "http://localhost:3000"
+      description: localhost server
+tags:
+    - name: User
+      description: Everything needed for user.
+    - name: Image Analysis
+      description: Endpoint for face analysis using ML.
+    - name: Products
+      description: For function related to skincare product.
+    - name: Logs
+      description: For image analysis Logs
+    - name: Machine Learning
+      description: Ml use
+    - name: Internal Use
+      description: Endpoint for microservices function
+    - name: Tips
+      description: Endpoint for getting tips
+paths:
+    /profile:
+        parameters: []
+        get:
+            summary: Get User Information
+            operationId: get-profile
+            description: Retrieve the information of the user.
+            tags:
+                - User
+            responses:
+                "200":
+                    description: User Found
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/User"
+        patch:
+            summary: Update User Information
+            operationId: patch-users-userId
+            description: Update the information of an existing user.
+            tags:
+                - User
+            responses:
+                "200":
+                    description: User Updated
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/User"
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/UpdateUserRequest"
+                description: Patch user properties to update.
+    /profile/uploadImage:
+        post:
+            summary: Renew the profile photo
+            responses:
+                "200":
+                    description: Image uploaded successfully!
+            operationId: post-profile-uploadImage
+            description: Upload new profile photo.
+            requestBody:
+                content:
+                    multipart/form-data:
+                        schema:
+                            type: object
+                            properties:
+                                file:
+                                    type: string
+                description: ""
+            tags:
+                - User
+        parameters: []
+    /products:
+        get:
+            summary: Getting a list of products available
+            responses:
+                "200":
+                    description: Products data retrieved successfully.
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: "#/components/schemas/SkincareProduct"
+            operationId: get-products
+            parameters:
+                - schema:
+                      type: string
+                  in: query
+                  name: brand
+                  description: get a specific brand
+                - schema:
+                      type: number
+                  in: query
+                  name: limit
+                  description: limit the result showed
+            description: To retrieve product list
+            tags:
+                - Products
+        parameters: []
+    "/products/{id}":
+        parameters:
+            - schema:
+                  type: string
+              name: id
+              in: path
+              required: true
+        get:
+            summary: Getting specific product
+            responses:
+                "200":
+                    description: Product data retrieved successfully.
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/SkincareProduct"
+            operationId: get-products-productId
+            description: Getting specific product information.
+            tags:
+                - Products
+    /products/recommendation:
+        get:
+            summary: Getting the list of recommendation
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: "#/components/schemas/SkincareProduct"
+            operationId: get-products-recommendation
+            tags:
+                - Products
+            requestBody:
+                content: {}
+            description: getting list recommendation
+            parameters:
+                - in: query
+                  name: skinType
+                  schema:
+                      type: string
+                  description: Skin type
+                - in: query
+                  name: skinCondition
+                  schema:
+                      type: string
+                  description: skin condition description
+    /request-analyses:
+        post:
+            summary: ""
+            operationId: post-ml-analysis
+            description: "Endpoint for requesting image analysis"
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: number
+            requestBody:
+                content:
+                    multipart/form-data:
+                        schema:
+                            type: object
+                            properties:
+                                image:
+                                    type: string
+                                    format: binary
+    /report-analyses:
+        post:
+            summary: "Endpoint for ML models reporting back the result"
+            operationId: post-report-analysis
+            responses:
+                "200":
+                    description: OK
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/AnalysisReport"
+    /logs:
+        get:
+            summary: Getting a list of log analysis for the user
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: "#/components/schemas/LogData"
+            operationId: get-analyses
+            tags:
+                - Image Analysis
+        parameters: []
+    "/logs/{id}":
+        parameters:
+            - schema:
+                  type: string
+              name: id
+              in: path
+              required: true
+        get:
+            summary: Getting the detail of the analysis
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/LogData"
+            operationId: get-analyses-id
+            description: ""
+            tags:
+                - Image Analysis
+    /articles:
+        get:
+            summary: Your GET endpoint
+            tags: []
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Article"
+            operationId: get-article
+            description: Get list article
+        parameters: []
+components:
+    schemas:
+        User:
+            title: User
+            type: object
+            properties:
+                user_id:
+                    type: string
+                    format: uuid
+                name:
+                    type: string
+                email:
+                    type: string
+                    format: email
+                picture:
+                    type: string
+                    format: uri
+                dateOfBirth:
+                    type: string
+                    format: date
+                skinType:
+                    type: string
+                skinCondition:
+                    type: string
+        UpdateUserRequest:
+            title: Update User Request
+            type: object
+            properties:
+                name:
+                    type: string
+                birthDate:
+                    type: string
+                    format: date
+                skinType:
+                    type: string
+                skinCondition:
+                    type: string
+        SkincareProduct:
+            title: SkincareProduct
+            type: object
+            properties:
+                id:
+                    type: string
+                image:
+                    type: string
+                name:
+                    type: string
+                brand:
+                    type: string
+                ingredients:
+                    type: string
+                type:
+                    type: string
+                price:
+                    type: string
+                rank:
+                    type: string
+                skinCondition:
+                    type: string
+                skinType:
+                    type: string
+        Quest:
+            title: Quest
+            type: object
+            properties:
+                id:
+                    type: string
+                title:
+                    type: string
+                day:
+                    type: string
+                description:
+                    type: string
+        LogData:
+            title: LogData
+            type: object
+            properties:
+                id:
+                    type: number
+                score:
+                    type: string
+                timestamp:
+                    type: string
+                facePicture:
+                    type: string
+                analysisResult:
+                    type: array
+                    items:
+                        $ref: "#/components/schemas/ImageAnalysis"
+        ImageAnalysis:
+            title: ImageAnalysis
+            type: object
+            properties:
+                image:
+                    type: string
+                problemCount:
+                    type: string
+                category:
+                    type: string
+                modelResult:
+                    type: object
+        Article:
+            title: Article
+            type: object
+            properties:
+                id:
+                    type: string
+                    format: uuid
+                title:
+                    type: string
+                description:
+                    type: string
+                image:
+                    type: string
+                    format: uri
+        AnalysisReport:
+            title: Reporting Analysis Result
+            type: object
+            properties:
+                id:
+                    type: string
+                data:
+                    type: object
+                image:
+                    type: string
+                    format: url
+                model:
+                    type: string
+    securitySchemes:
+        bearerAuth:
+            type: http
+            description: JWT Authorization header
+            scheme: bearer
+            bearerFormat: JWT
+security:
+    - bearerAuth: []
